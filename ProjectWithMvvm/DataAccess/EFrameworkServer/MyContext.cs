@@ -22,18 +22,6 @@ namespace ProjectWithMvvm.Contexts
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         { 
-            //Customers.Add(new Customer
-            //{
-            //    City = "Baku",
-            //    Country = "Azerbaijan",
-            //    ContactName = "Az-Telecom",
-            //    CompanyName = "StepIT Academy"
-            //});
-            //Orders.Add(new Order
-            //{
-            //     CustomerId=1,
-            //      OrderDate=DateTime.Now
-            //});
             modelBuilder.Configurations.Add(new CustomerMap());
             modelBuilder.Configurations.Add(new OrderMap());
            

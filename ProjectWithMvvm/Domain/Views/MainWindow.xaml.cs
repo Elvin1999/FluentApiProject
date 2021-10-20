@@ -25,10 +25,10 @@ namespace ProjectWithMvvm
         {
             InitializeComponent();
 
-            using (var context=new MyContext())
-            {
-                context.Database.CreateIfNotExists();
-            }
+            //using (var context=new MyContext())
+            //{
+            //    context.Database.CreateIfNotExists();
+            //}
 
         }
     }
