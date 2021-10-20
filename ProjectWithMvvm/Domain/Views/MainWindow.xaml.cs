@@ -1,4 +1,5 @@
 ﻿using ProjectWithMvvm.Contexts;
+using ProjectWithMvvm.Domain.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,9 @@ namespace ProjectWithMvvm
         public MainWindow()
         {
             InitializeComponent();
+
+            var vm = new MainViewModel();
+            this.DataContext = vm;
 
             //using (var context=new MyContext())
             //{

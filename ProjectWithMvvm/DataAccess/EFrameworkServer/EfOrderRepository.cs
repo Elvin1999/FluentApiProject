@@ -35,7 +35,7 @@ namespace ProjectWithMvvm.DataAccess.EFrameworkServer
         {
             using (var context = new MyContext())
             {
-                return new ObservableCollection<Order>(context.Orders);
+                return new ObservableCollection<Order>(context.Orders.Include("Customer"));
             }
         }
 

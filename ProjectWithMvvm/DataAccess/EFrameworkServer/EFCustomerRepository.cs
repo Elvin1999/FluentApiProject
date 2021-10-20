@@ -36,7 +36,7 @@ namespace ProjectWithMvvm.DataAccess.EFrameworkServer
             var customers = new ObservableCollection<Customer>();
             using (var context = new MyContext())
             {
-                customers =new ObservableCollection<Customer>(context.Customers);
+                customers =new ObservableCollection<Customer>(context.Customers.Include("Orders"));
             }
             return customers;
         }

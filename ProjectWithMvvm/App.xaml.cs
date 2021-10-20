@@ -1,4 +1,5 @@
-﻿using ProjectWithMvvm.DataAccess.EFrameworkServer;
+﻿using ProjectWithMvvm.Contexts;
+using ProjectWithMvvm.DataAccess.EFrameworkServer;
 using ProjectWithMvvm.Domain.Abstractions;
 using ProjectWithMvvm.Entities;
 using System;
@@ -19,6 +20,12 @@ namespace ProjectWithMvvm
         public static IUnitOfWork DB;
         public App()
         {
+            //creation db
+
+            //using (var context = new MyContext())
+            //{
+            //    context.Database.CreateIfNotExists();
+            //}
             DB = new EFUnitOfWork();
             if (DB.CustomerRepository.GetAllData().Count == 0)
             {
