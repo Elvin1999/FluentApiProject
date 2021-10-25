@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ProjectWithMvvm" xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="600" Width="800">
+    <StackPanel>
 
-        <StackPanel Orientation="Horizontal" >
+        <StackPanel Height="200" Orientation="Horizontal" >
             <ListView   SelectedItem="{Binding SelectedCustomer}" Background="SpringGreen" ItemsSource="{Binding AllCustomers}">
 
                 <i:Interaction.Triggers>
@@ -50,10 +50,10 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-            <ListView SelectedItem="{Binding SelectedOrder}" Background="SpringGreen" ItemsSource="{Binding AllOrders}">
+            <ListView Width="400" SelectedItem="{Binding SelectedOrder}" Background="SpringGreen" ItemsSource="{Binding AllOrders}">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Customer Company Name" Width="100">
+                        <GridViewColumn Header="Customer Company Name" Width="150">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Padding="5,0" Text="{Binding Customer.CompanyName}" ></TextBlock>
@@ -72,6 +72,20 @@
                 </ListView.View>
             </ListView>
         </StackPanel>
-        
-    </Grid>
+        <StackPanel Orientation="Horizontal" Background="DeepSkyBlue" Height="350">
+            <StackPanel Width="400"  >
+                <TextBlock FontSize="22">Contact Name</TextBlock>
+                <TextBox Text="{Binding SelectedCustomer.ContactName}" FontSize="22" ></TextBox>
+                <TextBlock FontSize="22">Company Name</TextBlock>
+                <TextBox FontSize="22" Text="{Binding SelectedCustomer.CompanyName}" ></TextBox>
+                <TextBlock FontSize="22">City</TextBlock>
+                <TextBox FontSize="22" Text="{Binding SelectedCustomer.City}" ></TextBox>
+                <TextBlock FontSize="22">Country</TextBlock>
+                <TextBox FontSize="22" Text="{Binding SelectedCustomer.Country}" ></TextBox>
+                <Button Command="{Binding AddCommand}" Margin="0,5,0,0" FontSize="22"> Add Customer </Button>
+                <Button Command="{Binding UpdateCommand}" Margin="0,5,0,0" FontSize="22"> Update Customer </Button>
+                <Button Command="{Binding ResetCommand}" Margin="0,5,0,0" FontSize="22"> Clear </Button>
+            </StackPanel>
+        </StackPanel> 
+    </StackPanel>
 </Window>

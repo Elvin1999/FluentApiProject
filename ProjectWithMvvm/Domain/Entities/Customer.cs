@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace ProjectWithMvvm.Entities
 {
     public class Customer
-    {
+    {      
         public int Id { get; set; }
         public string ContactName { get; set; }
         public string CompanyName { get; set; }
