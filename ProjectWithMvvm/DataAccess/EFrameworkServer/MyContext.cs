@@ -20,7 +20,10 @@ namespace ProjectWithMvvm.Contexts
         {
             modelBuilder.Configurations.Add(new CustomerMap());
             modelBuilder.Configurations.Add(new OrderMap());
-
+            modelBuilder.Entity<Order>()
+           .HasOptional<Customer>(s => s.Customer)
+           .WithMany()
+           .WillCascadeOnDelete(true);
         }
     }
 }

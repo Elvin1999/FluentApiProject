@@ -26,11 +26,7 @@ namespace ProjectWithMvvm.DataAccess.EFrameworkServer
         {
             using (var context = new MyContext())
             {
-                    if(data.Orders!=null && data.Orders.Count!=0)
-                    foreach (var item in data.Orders)
-                    {
-                        App.DB.OrderRepository.DeleteData(item);
-                    }
+                   
                 context.Entry(data).State = EntityState.Deleted;
                 context.SaveChanges();
 

@@ -34,6 +34,7 @@ namespace ProjectWithMvvm.Domain.ViewModels
             DeleteCustomerCommand = new RelayCommand((sender) =>
               {
                   App.DB.CustomerRepository.DeleteData(SelectedCustomer);
+                  AllOrders = new ObservableCollection<Order>();
                   AllCustomers = App.DB.CustomerRepository.GetAllData();
                   MessageBox.Show("Delete Customer Succesfully");
               }, (pred) =>
