@@ -16,11 +16,31 @@ namespace ProjectWithMvvm.Domain.ViewModels
         public RelayCommand AddCommand { get; set; }
         public RelayCommand UpdateCommand { get; set; }
         public RelayCommand ResetCommand { get; set; }
+        public RelayCommand OrderNowCommand { get; set; }
 
         public MainViewModel()
         {
             AllCustomers = App.DB.CustomerRepository.GetAllData();
             AllOrders = App.DB.OrderRepository.GetAllData();
+
+            OrderNowCommand = new RelayCommand((sender) =>
+              {
+
+                  var order = new Order();
+                  order.OrderDate = DateTime.Now;
+                  order.CustomerId = SelectedCustomer.Id;
+                    
+                  App.DB.OrderRepository.AddData(order);
+                  AllOrders = App.DB.OrderRepository.GetAllData();
+                  MessageBox.Show("Order Successfully");
+              }, (pred) =>
+             {
+                 if(SelectedCustomer!=null && SelectedCustomer.Id != 0)
+                 {
+                     return true;
+                 }
+                 return false;
+              });
             ResetCommand = new RelayCommand((sender) =>
               {
                   SelectedCustomer = new Customer();
@@ -29,11 +49,11 @@ namespace ProjectWithMvvm.Domain.ViewModels
               {
                   if (SelectedCustomer != null)
                   {
+                      var customer = App.DB.CustomerRepository.GetData(SelectedCustomer.Id);
+                      SelectedCustomer = customer;
                   AllOrders = new ObservableCollection<Order>(SelectedCustomer.Orders);
                   }
               });
-
-       
 
             AddCommand = new RelayCommand((sender) =>
               {

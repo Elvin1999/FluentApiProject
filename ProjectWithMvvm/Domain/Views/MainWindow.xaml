@@ -86,6 +86,14 @@
                 <Button Command="{Binding UpdateCommand}" Margin="0,5,0,0" FontSize="22"> Update Customer </Button>
                 <Button Command="{Binding ResetCommand}" Margin="0,5,0,0" FontSize="22"> Clear </Button>
             </StackPanel>
+            <StackPanel>
+
+                <Button Command="{Binding OrderNowCommand}" Margin="30" Padding="10" Background="Transparent" Foreground="White"
+                        BorderThickness="2"
+                        BorderBrush="SpringGreen"
+                        FontFamily="Comic Sans MS"
+                        FontSize="45" >Order Now</Button>
+            </StackPanel>
         </StackPanel> 
     </StackPanel>
 </Window>
