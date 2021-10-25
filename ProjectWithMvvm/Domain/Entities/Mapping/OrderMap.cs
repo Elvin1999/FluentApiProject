@@ -19,9 +19,7 @@ namespace ProjectWithMvvm.Entities.Mapping
             this.Property(o => o.CustomerId).HasColumnName("CustomerId");
             this.Property(o => o.OrderDate).HasColumnName("OrderDate");
 
-
-            
-
+         
 
         }
     }

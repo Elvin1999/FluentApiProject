@@ -17,12 +17,46 @@ namespace ProjectWithMvvm.Domain.ViewModels
         public RelayCommand UpdateCommand { get; set; }
         public RelayCommand ResetCommand { get; set; }
         public RelayCommand OrderNowCommand { get; set; }
+        public RelayCommand DeleteOrderCommand { get; set; }
+        public RelayCommand DeleteCustomerCommand { get; set; }
+
+
 
         public MainViewModel()
         {
+
+            SelectedCustomer = new Customer();
+            SelectedOrder = new Order();
+
+
             AllCustomers = App.DB.CustomerRepository.GetAllData();
             AllOrders = App.DB.OrderRepository.GetAllData();
+            DeleteCustomerCommand = new RelayCommand((sender) =>
+              {
+                  App.DB.CustomerRepository.DeleteData(SelectedCustomer);
+                  AllCustomers = App.DB.CustomerRepository.GetAllData();
+                  MessageBox.Show("Delete Customer Succesfully");
+              }, (pred) =>
+              {
+                  if (SelectedCustomer != null && SelectedCustomer.Id != 0)
+                  {
+                      return true;
+                  }
+                  return false;
+              });
+            DeleteOrderCommand = new RelayCommand((sender) =>
+              {
+                  App.DB.OrderRepository.DeleteData(SelectedOrder);
+                  AllOrders = App.DB.OrderRepository.GetAllData();
+                  MessageBox.Show("Order Deleted");
 
+              },(pred)=> { 
+                 if(SelectedOrder!=null && SelectedOrder.Id != 0)
+                  {
+                      return true;
+                  }
+                  return false;
+              });
             OrderNowCommand = new RelayCommand((sender) =>
               {
 
@@ -104,6 +138,12 @@ namespace ProjectWithMvvm.Domain.ViewModels
             set { selectedCustomer = value; OnPropertyChanged(); }
         }
 
+        private Order selectedOrder;
+        public Order SelectedOrder
+        {
+            get { return selectedOrder; }
+            set { selectedOrder = value; OnPropertyChanged(); }
+        }
 
     }
 }

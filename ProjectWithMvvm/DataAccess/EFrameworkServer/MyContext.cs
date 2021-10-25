@@ -4,13 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace ProjectWithMvvm.Contexts
 {
-    public class MyContext:DbContext
+    public class MyContext : DbContext
     {
         public MyContext()
         {
@@ -21,10 +17,10 @@ namespace ProjectWithMvvm.Contexts
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        { 
+        {
             modelBuilder.Configurations.Add(new CustomerMap());
             modelBuilder.Configurations.Add(new OrderMap());
-           
+
         }
     }
 }

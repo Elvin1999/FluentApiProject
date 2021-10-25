@@ -26,8 +26,15 @@ namespace ProjectWithMvvm.DataAccess.EFrameworkServer
         {
             using (var context = new MyContext())
             {
-                context.Customers.Remove(data);
+                    if(data.Orders!=null && data.Orders.Count!=0)
+                    foreach (var item in data.Orders)
+                    {
+                        App.DB.OrderRepository.DeleteData(item);
+                    }
+                context.Entry(data).State = EntityState.Deleted;
                 context.SaveChanges();
+
+               
             }
         }
 
@@ -36,7 +43,8 @@ namespace ProjectWithMvvm.DataAccess.EFrameworkServer
             var customers = new ObservableCollection<Customer>();
             using (var context = new MyContext())
             {
-                customers =new ObservableCollection<Customer>(context.Customers.Include("Orders"));
+
+                customers =new ObservableCollection<Customer>(context.Customers);
             }
             return customers;
         }
